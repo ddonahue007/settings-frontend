@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import FormTemplate from '@data-driven-forms/pf4-component-mapper/form-template';
 import componentMapper from '@data-driven-forms/pf4-component-mapper/component-mapper';
@@ -48,58 +48,46 @@ const FormTemplateWrapper = (props) => (
   <FormTemplate {...props} submitLabel="Save" canReset />
 );
 
-const [initialValues] = React.useState();
-
-export const setInitialValues = (values) => {
-  initialValues(values);
-};
-
-const RenderForms = ({
-  schemas,
-  loaded,
-  saveValues,
-  setInitialValues,
-  initialValues,
-  ...props
-}) => (
-  <Stack {...props} hasGutter>
-    {loaded ? (
-      schemas.map((schema, i) => (
-        <StackItem key={`settings-form-${i}`}>
+const RenderForms = ({ schemas, loaded, saveValues, ...props }) => {
+  const [initialValues, setInitialValues] = useState(initialValues);
+  return (
+    <Stack {...props} hasGutter>
+      {loaded ? (
+        schemas.map((schema, i) => (
+          <StackItem key={`settings-form-${i}`}>
+            <Card>
+              <CardBody>
+                <FormRender
+                  componentMapper={componentMapperExtended}
+                  FormTemplate={FormTemplateWrapper}
+                  schema={schema}
+                  submitLabel="Save"
+                  onSubmit={((values) => setInitialValues(values), saveValues)}
+                  initialValues={initialValues}
+                  validatorMapper={validatorMapperBridge}
+                />
+              </CardBody>
+            </Card>
+          </StackItem>
+        ))
+      ) : (
+        <StackItem>
           <Card>
             <CardBody>
-              <FormRender
-                componentMapper={componentMapperExtended}
-                FormTemplate={FormTemplateWrapper}
-                schema={schema}
-                submitLabel="Save"
-                onSubmit={(setInitialValues, saveValues)}
-                initialValues={initialValues}
-                validatorMapper={validatorMapperBridge}
-              />
+              <Skeleton size="lg" />
             </CardBody>
           </Card>
         </StackItem>
-      ))
-    ) : (
-      <StackItem>
-        <Card>
-          <CardBody>
-            <Skeleton size="lg" />
-          </CardBody>
-        </Card>
-      </StackItem>
-    )}
-  </Stack>
-);
+      )}
+    </Stack>
+  )
+};
 
 RenderForms.propTypes = {
   schemas: PropTypes.arrayOf(PropTypes.shape({})),
   loaded: PropTypes.bool,
   appId: PropTypes.string,
   saveValues: PropTypes.func,
-  setInitialValues: PropTypes.func,
-  initialValues: PropTypes.string,
 };
 
 RenderForms.defaultProps = {
