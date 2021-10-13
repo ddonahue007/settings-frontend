@@ -62,7 +62,10 @@ const RenderForms = ({ schemas, loaded, saveValues, ...props }) => {
                   FormTemplate={FormTemplateWrapper}
                   schema={schema}
                   submitLabel="Save"
-                  onSubmit={((values) => setInitialValues(values), saveValues)}
+                  onSubmit={(values) => {
+                    setInitialValues(values);
+                    return saveValues(values);
+                  }}
                   initialValues={initialValues}
                   validatorMapper={validatorMapperBridge}
                 />
