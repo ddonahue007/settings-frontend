@@ -62,8 +62,9 @@ const RenderForms = ({ schemas, loaded, saveValues, ...props }) => {
                   FormTemplate={FormTemplateWrapper}
                   schema={schema}
                   submitLabel="Save"
-                  onSubmit={(values) => {
+                  onSubmit={(values, formApi) => {
                     setInitialValues(values);
+                    formApi.initialize(values);
                     return saveValues(values);
                   }}
                   initialValues={initialValues}
