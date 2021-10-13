@@ -83,7 +83,7 @@ const RenderForms = ({ schemas, loaded, saveValues, ...props }) => {
         </StackItem>
       )}
     </Stack>
-  )
+  );
 };
 
 RenderForms.propTypes = {
