@@ -49,7 +49,7 @@ const FormTemplateWrapper = (props) => (
 );
 
 const RenderForms = ({ schemas, loaded, saveValues, ...props }) => {
-  const [initialValues, setInitialValues] = useState(initialValues);
+  const [initialValues, setInitialValues] = useState();
   return (
     <Stack {...props} hasGutter>
       {loaded ? (
