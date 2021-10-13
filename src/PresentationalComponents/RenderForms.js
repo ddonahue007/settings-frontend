@@ -48,7 +48,20 @@ const FormTemplateWrapper = (props) => (
   <FormTemplate {...props} submitLabel="Save" canReset />
 );
 
-const RenderForms = ({ schemas, loaded, saveValues, ...props }) => (
+const [initialValues] = React.useState();
+
+export const setInitialValues = (values) => {
+  initialValues(values);
+};
+
+const RenderForms = ({
+  schemas,
+  loaded,
+  saveValues,
+  setInitialValues,
+  initialValues,
+  ...props
+}) => (
   <Stack {...props} hasGutter>
     {loaded ? (
       schemas.map((schema, i) => (
@@ -60,7 +73,8 @@ const RenderForms = ({ schemas, loaded, saveValues, ...props }) => (
                 FormTemplate={FormTemplateWrapper}
                 schema={schema}
                 submitLabel="Save"
-                onSubmit={saveValues}
+                onSubmit={(setInitialValues, saveValues)}
+                initialValues={initialValues}
                 validatorMapper={validatorMapperBridge}
               />
             </CardBody>
@@ -84,6 +98,8 @@ RenderForms.propTypes = {
   loaded: PropTypes.bool,
   appId: PropTypes.string,
   saveValues: PropTypes.func,
+  setInitialValues: PropTypes.func,
+  initialValues: PropTypes.string,
 };
 
 RenderForms.defaultProps = {
