@@ -19,7 +19,7 @@ const { config: webpackConfig, plugins } = config({
     // Example:
     //     export API_PORT=8000
     //     export LOCAL_API="/api/cost-management/v1/"
-    [`${process.env.LOCAL_API}`]: {
+    [process.env.LOCAL_API]: {
       host: `http://localhost:${process.env.API_PORT}`,
     },
   },
