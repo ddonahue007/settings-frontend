@@ -15,10 +15,13 @@ const { config: webpackConfig, plugins } = config({
   appUrl: `/beta/settings/applications`,
   proxyVerbose: true,
   routes: {
-    // insert your API endpoints here if needed
+    // set local API in env.
     // Example:
-    //     '/api/cost-management/v1/': { host: 'http://localhost:8000' },
-    '/api/cost-management/v1/': { host: 'http://localhost:8000' },
+    //     export API_PORT=8000
+    //     export LOCAL_API="/api/cost-management/v1/"
+    [`${process.env.LOCAL_API}`]: {
+      host: `http://localhost:${process.env.API_PORT}`,
+    },
   },
   env: 'qa-beta',
   standalone: {
