@@ -45,7 +45,12 @@ const validatorMapperBridge = {
 };
 
 const FormTemplateWrapper = (props) => (
-  <FormTemplate {...props} submitLabel="Save" canReset />
+  <FormTemplate
+    {...props}
+    submitLabel="Save"
+    canReset
+    {...props.schema.formProps}
+  />
 );
 
 const RenderForms = ({ schemas, loaded, saveValues, ...props }) => {
@@ -96,6 +101,10 @@ RenderForms.propTypes = {
 
 RenderForms.defaultProps = {
   saveValues: () => undefined,
+};
+
+FormTemplateWrapper.propTypes = {
+  schema: PropTypes.object,
 };
 
 export default RenderForms;
