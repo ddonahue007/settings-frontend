@@ -5,8 +5,6 @@ import { ErrState } from './ErrState';
 
 it('plain text hack - render', () => {
   const wrapper = shallow(
-    <ErrState />,
-    <ErrState errorTitle="Testing" errorDescription="This is a test" />,
     <ErrState
       errorTitle="Testing"
       errorDescription="This is a test"

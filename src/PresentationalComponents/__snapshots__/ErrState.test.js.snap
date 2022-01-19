@@ -4,12 +4,17 @@ exports[`plain text hack - render 1`] = `
 <ErrorState
   errorDescription={
     <span>
+      This is a test
        
       <br />
        
-      <a />
+      <a
+        href="http://test.test.com"
+      >
+        testing
+      </a>
     </span>
   }
-  errorTitle="Something went wrong"
+  errorTitle="Testing"
 />
 `;
