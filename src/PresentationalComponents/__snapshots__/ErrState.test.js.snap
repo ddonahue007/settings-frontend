@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`plain text hack - render 1`] = `
+<ErrorState
+  errorDescription={
+    <span>
+       
+      <br />
+       
+      <a />
+    </span>
+  }
+  errorTitle="Something went wrong"
+/>
+`;
