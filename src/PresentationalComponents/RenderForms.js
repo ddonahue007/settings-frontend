@@ -5,6 +5,7 @@ import componentMapper from '@data-driven-forms/pf4-component-mapper/component-m
 import Skeleton from '@redhat-cloud-services/frontend-components/Skeleton';
 import { Stack, StackItem, Card, CardBody } from '@patternfly/react-core';
 import { PlainTextWithLinks } from './PlainTextWithLinks';
+import { ErrorState } from './ErrorState';
 
 import FormRender from '@data-driven-forms/react-form-renderer/form-renderer';
 import componentTypes from '@data-driven-forms/react-form-renderer/component-types';
@@ -18,6 +19,7 @@ const componentMapperExtended = {
   'textarea-field': componentMapper[componentTypes.TEXTAREA],
   'select-field': componentMapper[componentTypes.SELECT],
   'plain-text-with-links': PlainTextWithLinks,
+  'error-state': ErrorState,
   [componentTypes.DUAL_LIST_SELECT]: {
     component: componentMapper[componentTypes.DUAL_LIST_SELECT],
     isFilterable: true,
