@@ -8,8 +8,6 @@ it('plain text hack - render', () => {
     <ErrState
       errorTitle="Testing"
       errorDescription="This is a test"
-      hrefUrl="http://test.test.com"
-      hrefText="testing"
     />
   );
   expect(toJson(wrapper)).toMatchSnapshot();
